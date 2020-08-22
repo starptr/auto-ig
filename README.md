@@ -12,4 +12,4 @@ Below is a list of actions that I do or would like to do on Instagram. The items
 - [x] Unfollow accounts with uni-directional relation
 - [x] Exceptions for famous accounts that I'm interested in
 
-Judging by the amount of time I spend on Instagram, I estimate that ~80% of my account is now automated.
+Estimating by the amount of time I spend on Instagram, ~80% of my account is automated with this.
