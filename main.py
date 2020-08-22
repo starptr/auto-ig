@@ -31,7 +31,7 @@ with smart_run(session):
         lastrun_timestamp = ftime.readline()
 
     # Check if at least a day has passed before getting following/ers
-    if True or (not lastrun_timestamp) or (time.time() - float(lastrun_timestamp) >= DAY_IN_SECONDS):
+    if (not lastrun_timestamp) or (time.time() - float(lastrun_timestamp) >= DAY_IN_SECONDS):
         # Get list from online
         fancyLog("Lastrun was more than 24 hrs ago; getting followers and followings")
         followings = set(session.grab_following(username=insta_username, amount="full"))
@@ -95,7 +95,7 @@ with smart_run(session):
 
         with open("./data/followers_only.txt", "w") as fout:
             fout.write("\n".join(followers_only))
-        
+
         # Write current run timestamp
         with open("./data/lastrun.log", "w") as ftime:
             ftime.write(str(time.time()))
