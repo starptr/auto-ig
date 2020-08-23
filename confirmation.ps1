@@ -8,5 +8,5 @@ if ($Result -eq "OK") {
     & .\run.ps1
 }
 else {
-    "Cancel"   
+    "Cancelled"   
 }
