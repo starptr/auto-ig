@@ -10,3 +10,5 @@ if ($Result -eq "OK") {
 else {
     "Cancelled"   
 }
+
+Read-Host -Prompt “Press Enter to exit”
