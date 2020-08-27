@@ -11,7 +11,8 @@ def fancyLog(x):
     print(f">>>> {x}")
 
 
-DAY_IN_SECONDS = 60 * 60 * 24
+HALF_DAY_IN_SECONDS = 60 * 60 * 12
+DAY_IN_SECONDS = 2 * HALF_DAY_IN_SECONDS
 WEEK_IN_SECONDS = DAY_IN_SECONDS * 7
 
 # login credentials
@@ -21,19 +22,20 @@ bep = os.getenv("BROWSER_EXECUTABLE_PATH")
 
 # get an InstaPy session!
 # set headless_browser=True to run InstaPy in the background
-session = InstaPy(username=insta_username, password=insta_password, browser_executable_path=bep, headless_browser=False)
+# session = InstaPy(username=insta_username, password=insta_password, browser_executable_path=bep, headless_browser=False)
+session = InstaPy(username=insta_username, password=insta_password, headless_browser=False)
 
 with smart_run(session):
-    session.set_skip_users(skip_private=False)
+    session.set_skip_users(skip_private=False, private_percentage=0)
 
     fancyLog("Checking lastrun")
     with open("./data/lastrun.log", "r") as ftime:
         lastrun_timestamp = ftime.readline()
 
     # Check if at least a day has passed before getting following/ers
-    if (not lastrun_timestamp) or (time.time() - float(lastrun_timestamp) >= DAY_IN_SECONDS):
+    if (not lastrun_timestamp) or (time.time() - float(lastrun_timestamp) >= HALF_DAY_IN_SECONDS):
         # Get list from online
-        fancyLog("Lastrun was more than 24 hrs ago; getting followers and followings")
+        fancyLog("Lastrun was more than 12 hrs ago; getting followers and followings")
         followings = set(session.grab_following(username=insta_username, amount="full"))
         followers = set(session.grab_followers(username=insta_username, amount="full"))
 
